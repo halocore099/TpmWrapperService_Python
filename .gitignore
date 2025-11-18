@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+tpm_wrapper_service.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# TPM socket/pipe
+/tmp/TpmWrapperPipe.sock
+\\.\pipe\TpmWrapperPipe
+
+# Test reports
+test_report_*.json
+
