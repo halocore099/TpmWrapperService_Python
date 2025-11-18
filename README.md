@@ -11,9 +11,25 @@ Cross-platform TPM 2.0 wrapper service supporting Windows (x86_64, ARM64) and Li
 
 ## Installation
 
+### Quick Install (Recommended)
+
 ```bash
+# Create virtual environment (recommended, especially on Arch Linux)
+python -m venv venv
+source venv/bin/activate  # Linux/macOS
+# OR: venv\Scripts\activate  # Windows
+
+# Install dependencies
 pip install -r requirements.txt
 ```
+
+**Note:** On Arch Linux, you may see "externally managed" - use venv as shown above.
+
+### TPM Library
+
+The service uses `pytss` (installed via requirements.txt). Version 0.1.4+ works fine.
+
+For detailed installation instructions, including troubleshooting, see [INSTALLATION.md](INSTALLATION.md).
 
 ## Running
 
@@ -26,6 +42,34 @@ python -m tpm_wrapper_service.service
 ```bash
 python -m tpm_wrapper_service.service
 ```
+
+## Usage
+
+### Running the Service
+
+```bash
+# Start the TPM wrapper service
+python -m tpm_wrapper_service.service
+```
+
+### Registering with a Server
+
+If you have a server that accepts TPM registration:
+
+```bash
+# Register with server (replace with your server URL)
+python tpm_client.py http://your-server-ip:port
+
+# Or the script will prompt for server URL
+python tpm_client.py
+```
+
+The client will:
+1. Get attestation data from TPM service
+2. Register with the server
+3. Receive a challenge
+4. Activate the credential using TPM
+5. Complete the challenge
 
 ## Testing
 
@@ -58,6 +102,7 @@ The test script will:
 
 Additional documentation is available in the `markdown/` directory:
 
+- **[INSTALLATION.md](INSTALLATION.md)** - Detailed installation guide and troubleshooting
 - **[ARCHITECTURE.md](markdown/ARCHITECTURE.md)** - Architecture support details
 - **[COMPARISON.md](markdown/COMPARISON.md)** - Detailed C# to Python comparison
 - **[SIMPLE_EXPLANATION.md](markdown/SIMPLE_EXPLANATION.md)** - Simple explanation of how it works

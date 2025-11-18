@@ -1,8 +1,11 @@
 # Core TPM library (choose one)
 # Option 1: pytss (recommended for cross-platform)
-pytss>=2.0.0
-# Option 2: tpm2-pytss (alternative)
+# Note: Version 0.1.4+ works fine (2.0.0+ doesn't exist yet)
+pytss>=0.1.0
+# Option 2: tpm2-pytss (alternative - requires build dependencies)
 # tpm2-pytss>=2.0.0
+# For Arch Linux, install build deps first:
+#   sudo pacman -S tpm2-tss tpm2-tools python-setuptools python-wheel
 
 # Cryptography
 cryptography>=41.0.0
@@ -13,4 +16,7 @@ pywin32>=305; sys_platform == 'win32'
 # ASN.1 support (if needed)
 pyasn1>=0.5.0
 pyasn1-modules>=0.3.0
+
+# HTTP client for server communication (for tpm_client.py)
+requests>=2.31.0
 
