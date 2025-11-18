@@ -1,11 +1,10 @@
-# Core TPM library (choose one)
-# Option 1: pytss (recommended for cross-platform)
-# Note: Version 0.1.4+ works fine (2.0.0+ doesn't exist yet)
-pytss>=0.1.0
-# Option 2: tpm2-pytss (alternative - requires build dependencies)
-# tpm2-pytss>=2.0.0
-# For Arch Linux, install build deps first:
-#   sudo pacman -S tpm2-tss tpm2-tools python-setuptools python-wheel
+# Core TPM library
+# Note: tpm2-pytss is now bundled with the package (no need to install separately)
+# The bundled version includes all required TSS2 libraries (DLLs/.so files)
+# Option 1: pytss (legacy - TPM 1.2 only, not recommended)
+# pytss>=0.1.0
+# Option 2: tpm2-pytss (bundled - TPM 2.0, included in package)
+# tpm2-pytss is bundled - see BUILD.md for building instructions
 
 # Cryptography
 cryptography>=41.0.0

@@ -17,49 +17,25 @@ venv\Scripts\activate  # Windows
 pip install -r requirements.txt
 ```
 
-## TPM Library Options
+## TPM Library
 
-### Option 1: pytss (Recommended) ✅
+### Bundled tpm2-pytss (Default) ✅
 
-**Works out of the box:**
-```bash
-pip install pytss
-```
+**The package includes bundled tpm2-pytss and all required TSS2 libraries.**
 
-This installs `pytss` version 0.1.4 (or latest available), which works perfectly with this service.
+When you install the package from a wheel, all TSS2 libraries (DLLs on Windows, .so files on Linux) are automatically included. **No additional installation is needed.**
 
-### Option 2: tpm2-pytss (Alternative)
+**Benefits:**
+- No need to install TSS2 libraries separately
+- Works on clean systems without build tools
+- Cross-platform support (Windows + Linux)
+- Distribution-agnostic Linux wheels (works on Ubuntu, Arch, Debian, Fedora, etc.)
 
-**Requires build dependencies on Linux:**
+**For developers building from source:** See [BUILD.md](BUILD.md) for instructions on building with bundled libraries.
 
-#### Arch Linux
-```bash
-# Install build dependencies
-sudo pacman -S tpm2-tss tpm2-tools python-setuptools python-wheel
+### Legacy Option: pytss (Not Recommended)
 
-# Then install tpm2-pytss
-pip install tpm2-pytss
-```
-
-#### Ubuntu/Debian
-```bash
-# Install build dependencies
-sudo apt-get install libtss2-dev tpm2-tools python3-dev build-essential
-
-# Then install tpm2-pytss
-pip install tpm2-pytss
-```
-
-#### Fedora
-```bash
-# Install build dependencies
-sudo dnf install tpm2-tss-devel tpm2-tools python3-devel gcc
-
-# Then install tpm2-pytss
-pip install tpm2-pytss
-```
-
-**Note:** You only need ONE of these libraries. `pytss` is recommended as it's easier to install.
+The old `pytss` library (TPM 1.2 only) is no longer recommended. The bundled `tpm2-pytss` (TPM 2.0) is the default and preferred option.
 
 ## Platform-Specific Requirements
 
@@ -145,12 +121,14 @@ source venv/bin/activate
 After installation, verify everything works:
 
 ```bash
-# Test pytss import
-python -c "from TSS import ESYS; print('pytss works!')"
+# Test tpm2-pytss import (bundled)
+python -c "import tpm2_pytss; print('tpm2-pytss works!')"
 
 # Test service start (will fail if TPM not accessible, but should import)
 python -c "from tpm_wrapper_service import service; print('Service module loads!')"
 ```
+
+**Note:** If you're building from source, ensure you've followed the [BUILD.md](BUILD.md) instructions to bundle the libraries.
 
 ## Full Installation Example (Arch Linux)
 

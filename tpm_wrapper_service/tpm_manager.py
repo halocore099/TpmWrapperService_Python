@@ -6,6 +6,9 @@ from typing import Tuple, Optional
 from cryptography import x509
 from cryptography.hazmat.backends import default_backend
 
+# Set up library path before importing TSS libraries
+from . import lib_loader  # noqa: F401
+
 try:
     from TSS import TSS
     from TSS import ESYS

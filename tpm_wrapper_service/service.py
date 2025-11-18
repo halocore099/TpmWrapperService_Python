@@ -9,6 +9,7 @@ from typing import Optional
 
 from . import platform_utils
 from . import ipc_server
+from . import lib_loader  # noqa: F401 - Set up library path before TPM operations
 
 # Configure logging
 logging.basicConfig(
@@ -25,6 +26,7 @@ logger = logging.getLogger(__name__)
 
 def get_tpm_context():
     """Get TPM context based on platform."""
+    # Library path is already set up by lib_loader import
     try:
         from TSS import ESYS
         # Try TSS library first

@@ -27,7 +27,9 @@ pip install -r requirements.txt
 
 ### TPM Library
 
-The service uses `pytss` (installed via requirements.txt). Version 0.1.4+ works fine.
+The service uses `tpm2-pytss` which is **bundled with the package**. All required TSS2 libraries (DLLs on Windows, .so files on Linux) are included, so no additional installation is needed.
+
+**For developers building from source:** See [BUILD.md](BUILD.md) for instructions on building with bundled libraries.
 
 For detailed installation instructions, including troubleshooting, see [INSTALLATION.md](INSTALLATION.md).
 

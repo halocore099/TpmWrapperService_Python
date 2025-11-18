@@ -7,7 +7,10 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 with open("requirements.txt", "r", encoding="utf-8") as fh:
-    requirements = [line.strip() for line in fh if line.strip() and not line.startswith("#")]
+    requirements = [
+        line.strip() for line in fh 
+        if line.strip() and not line.startswith("#") and not line.strip().startswith("tpm2-pytss")
+    ]
 
 setup(
     name="tpm-wrapper-service",
@@ -18,6 +21,14 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/yourusername/tpm-wrapper-service",
     packages=find_packages(),
+    package_data={
+        'tpm_wrapper_service': [
+            'libs/windows/*.dll',
+            'libs/linux/x86_64/*.so*',
+            'libs/linux/aarch64/*.so*',  # For ARM64 Linux
+        ],
+    },
+    include_package_data=True,
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",

@@ -12,6 +12,7 @@ from . import platform_utils
 from . import tpm_manager
 from . import ek_exporter
 from . import crypto_lib
+from . import lib_loader  # noqa: F401 - Set up library path before TSS imports
 
 logger = logging.getLogger(__name__)
 
